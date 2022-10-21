@@ -171,7 +171,36 @@ void countSort()
   memset(count, 0, sizeof(int) * (RANGE+1));
 
   measure.start();
-  /* ... */
+  printf("Original order: ");
+  for (int i = 0; i < (int)OriginalInput.size(); i++){
+      printf("%d ", arr[i]);
+  }printf("\n");
+
+  for (int i = 0; i < (int)arr.size(); i++){
+    ++count[arr[i]];
+  }
+  
+  for (int i = 0; i <= RANGE; i++) {
+    count[i] += count[i - 1];
+  }
+
+
+  for (int i = 0; i < (int)arr.size(); i++) {
+    output[count[arr[i]] - 1] = arr[i];
+    --count[arr[i]];
+  }
+
+  for (int i = 0; i < (int)arr.size(); i++) {
+    arr[i] = output[i];
+  }
+
+  printf("Sorted: ");
+  for (int i = 0; i < (int)arr.size(); i++){
+      printf(" %d ", arr[i]);
+  }printf("\n");
+
+
+
   measure.end();
 
   free(count);
@@ -213,9 +242,10 @@ int main(int argc, char *argv[])
 {
   init(argc, argv);
 
-  insertSort();
-  quickSortStart(); 
-  iCannotBelieve(); 
+  //insertSort();
+  //quickSortStart(); 
+  //iCannotBelieve(); 
+  countSort();
   defaultSort();
 
   return 0;
