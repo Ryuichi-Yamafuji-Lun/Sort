@@ -114,7 +114,17 @@ to left of pivot and all greater elements to right
 of pivot */
 int partition (std::vector<int>& arr, int low, int high)
 {
-  return 0;
+  int x = arr[high];
+  printf("Partition: %d \n", x);
+  int i = low - 1;
+  for (int j = low; j <= high; j++) {
+    if (arr[j] < x) {
+      i++;
+      swap(&arr[i], &arr[j]);
+    }
+  }
+  swap(&arr[i + 1], &arr[high]);
+  return (i + 1);
 }
 
 /* The main function that implements QuickSort
@@ -123,6 +133,16 @@ low --> Starting index,
 high --> Ending index */
 void quickSort(std::vector<int>& arr, int low, int high)
 {
+  if (low < high) {
+    for (int i = 0; i < (int)arr.size();i++) {
+      printf("%d ", arr[i]);
+    }printf("\n");
+    //partitioning index
+    int part = partition(arr, low, high);
+    //seperate sort elements
+    quickSort(arr,low, part - 1);
+    quickSort(arr, part + 1, high);
+  }
 
 }
 
@@ -194,8 +214,8 @@ int main(int argc, char *argv[])
   init(argc, argv);
 
   insertSort();
-  //quickSortStart(); 
-  //iCannotBelieve(); 
+  quickSortStart(); 
+  iCannotBelieve(); 
   defaultSort();
 
   return 0;
