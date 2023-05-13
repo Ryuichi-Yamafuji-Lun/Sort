@@ -1,6 +1,6 @@
 # Sort
 Implementation of sorts
-
+Code in sort.cc
 Insert Sort:
 The insertion sort starts from the left and compares the value next to it with the value on the left. If value on the left is greater then it swaps with the value on the right. It continues this process until the value on the right is greater than the value on the left.
 
